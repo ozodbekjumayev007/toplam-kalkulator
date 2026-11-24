@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>To'plam Kalkulatori</title>
+<meta name="description" content="To'plamlar ustida amallar: birlashma, kesishma, ayirma, simmetrik ayirma. Natija Venn diagrammasi bilan.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Ccircle cx='18' cy='12' r='10' fill='%237F77DD' fill-opacity='.4' stroke='%237F77DD'/%3E%3Ccircle cx='11' cy='24' r='10' fill='%231D9E75' fill-opacity='.4' stroke='%231D9E75'/%3E%3Ccircle cx='25' cy='24' r='10' fill='%23378ADD' fill-opacity='.4' stroke='%23378ADD'/%3E%3C/svg%3E">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo"><svg width="34" height="24" viewBox="0 0 36 24" aria-hidden="true"><circle cx="13" cy="12" r="9" fill="#7F77DD" fill-opacity=".35" stroke="#7F77DD"/><circle cx="23" cy="12" r="9" fill="#1D9E75" fill-opacity=".35" stroke="#1D9E75"/></svg>To'plamlar</div>
+    <div class="seg" role="group" aria-label="Rejim">
+      <button data-mode="oddiy" aria-pressed="true">Oddiy</button>
+      <button data-mode="ifoda" aria-pressed="false">Ifoda</button>
+    </div>
+  </header>
+
+  <main class="cols">
+    <div class="col">
+      <section class="card">
+        <div class="rh"><h2>1. To'plamlarni kiriting</h2><button class="btn sm" id="sample">Namuna</button></div>
+        <p class="hint">Elementlarni vergul bilan ajrating. Son, harf va belgi bo'lishi mumkin.</p>
+        <div id="sets"></div>
+        <button class="btn full" id="addSet">+ Yana to'plam qo'shish</button>
+        <details class="opts">
+          <summary>Sozlamalar</summary>
+          <label><input type="checkbox" id="optCase" checked> Harf registrini farqlash (A va a har xil)</label>
+          <label><input type="checkbox" id="optNum"> Sonlarni son sifatida solishtirish (1 va 1.0 bir xil)</label>
+        </details>
+      </section>
+
+      <section class="card" id="opsCard">
+        <h2>2. Nima qilmoqchisiz? Amalni tanlang</h2>
+        <p class="hint">Ikonkada ko'k bo'yalgan qism natijaga kiradi.</p>
+        <div class="grid2" id="ops"></div>
+        <p class="hint sp">Amalga qatnashadigan to'plamlar. Diagrammada ko'rsatiladi.</p>
+        <div class="chips" id="pick"></div>
+        <p class="hint sp">Ko'proq amallar</p>
+        <div class="chips" id="extra"></div>
+      </section>
+
+      <section class="card" id="exprCard" hidden>
+        <h2>2. Ifodani tuzing</h2>
+        <p class="hint">Tugmalarni bosib ifoda yozing. Aralash amallar uchun qavs kerak.</p>
+        <input id="expr" class="exprin" autocomplete="off" spellcheck="false" placeholder="(A ∪ B) \ C" aria-label="Ifoda">
+        <p class="hint sp">To'plamlar</p>
+        <div class="chips" id="ksets"></div>
+        <p class="hint sp">Amallar</p>
+        <div class="chips">
+          <button class="key" data-k="∪" aria-label="Birlashma">∪</button><button class="key" data-k="∩" aria-label="Kesishma">∩</button><button class="key" data-k="\" aria-label="Ayirma">\</button><button class="key" data-k="Δ" aria-label="Simmetrik ayirma">Δ</button><button class="key" data-k="(">(</button><button class="key" data-k=")">)</button>
+        </div>
+        <div class="btns"><button class="btn" id="del">⌫ O'chirish</button><button class="btn" id="clr">Tozalash</button><button class="btn pri" id="calc">Hisoblash</button></div>
+      </section>
+    </div>
+
+    <div class="col">
+      <section class="card" id="res" aria-live="polite">
+        <div class="rh"><h2>3. Natija</h2><span class="badge" id="count" hidden></span></div>
+        <div id="msg" class="hint"></div>
+        <div id="out" hidden>
+          <div class="say"><p id="say"></p><small id="sub"></small></div>
+          <div id="venn"></div>
+          <div class="legend" id="legend"></div>
+          <p class="hint sp" id="elh">Elementlar (nuqta rangi qaysi to'plamdan ekanini ko'rsatadi)</p>
+          <div class="chips" id="els"></div>
+          <p class="check" id="check"></p>
+          <div class="btns"><button class="btn" id="copy">Nusxalash</button><button class="btn" id="save">To'plam qilib saqlash</button></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+<script src="sets.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
